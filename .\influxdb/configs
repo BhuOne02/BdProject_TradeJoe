@@ -1,6 +1,6 @@
 [default]
   url = "http://localhost:8086"
-  token = "cwgt-xfhR6eThhVM_kXD_ZAETPh151cWiZ8GfHbpusgwliaU-MWEIQnwcOs3gkHhcxIEP5-IwHR_6YfrT_Durg=="
+  token = "your_influxdb_token"
   org = "primary"
   active = true
 # 

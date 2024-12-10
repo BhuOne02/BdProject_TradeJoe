@@ -19,24 +19,33 @@ def send_to_kafka(producer, topic, key, partition, message):
     producer.flush()
 
 def retrieve_historical_data(producer, stock_symbol, kafka_topic, logger):
-    # Define the date range for historical data
     stock_symbols = stock_symbol.split(",") if stock_symbol else []
     if not stock_symbols:
         logger.error(f"No stock symbols provided in the environment variable.")
         exit(1)
-    # Fetch historical data
-    # end_date = t.strftime('%Y-%m-%d')
+
     end_date = datetime.now()
-    start_date = (yf.Ticker(stock_symbols[0]).history(period="14d").index[0]).strftime('%Y-%m-%d')
+    start_date = end_date - timedelta(days=14)  # Exactly 14 days ago
+
     for symbol_index, stock_symbol in enumerate(stock_symbols):
-        historical_data = yf.download(stock_symbol, start=start_date, end=end_date, interval="2m", prepost= True)
+        historical_data = yf.download(
+            stock_symbol,
+            start=start_date.strftime('%Y-%m-%d'),
+            end=end_date.strftime('%Y-%m-%d'),
+            interval="2m",
+            prepost=True
+        )
+        if historical_data.empty:
+            logger.warning(f"No historical data fetched for {stock_symbol}.")
+            continue
+        
         historical_data.loc[historical_data["Volume"] == 0, ["Open", "High", "Low", "Close", "Adj Close", "Volume"]] = np.nan
 
         # Convert and send historical data to Kafka
         for index, row in historical_data.iterrows():
             historical_data_point = {
                 'stock': stock_symbol,
-                'date': row.name.isoformat(),
+                'date': index.isoformat(),
                 'open': row['Open'],
                 'high': row['High'],
                 'low': row['Low'],
@@ -45,9 +54,12 @@ def retrieve_historical_data(producer, stock_symbol, kafka_topic, logger):
             }
             send_to_kafka(producer, kafka_topic, stock_symbol, symbol_index, historical_data_point)
 
+
+
+
 def retrieve_real_time_data(producer, stock_symbol, kafka_topic, logger):
     # Define the stock symbol for real-time data
-    retrieve_historical_data(producer, stock_symbol, kafka_topic, logger)
+    #retrieve_historical_data(producer, stock_symbol, kafka_topic, logger)
     stock_symbols = stock_symbol.split(",") if stock_symbol else []
     if not stock_symbols:
         logger.error(f"No stock symbols provided in the environment variable.")
