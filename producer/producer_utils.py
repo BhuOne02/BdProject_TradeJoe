@@ -54,10 +54,10 @@ def retrieve_historical_data(producer, stock_symbol, kafka_topic, logger):
                 historical_data.columns = [col.split('_', 1)[-1] if '_' in col else col for col in historical_data.columns]
    
             # Iterate through rows and send to Kafka
-            for _, row in historical_data.iterrows():
-                date_value = row['Date']  # This should be a Timestamp or datetime
-                # Convert to ISO string if needed
-                date_str = date_value.isoformat() if hasattr(date_value, 'isoformat') else str(date_value)
+            for index, row in historical_data.iterrows():
+                logger.info("row:")
+                logger.info(row[0])
+                date_str = row[0].strftime('%Y-%m-%d')
                 try:
                     historical_data_point = {
                         'stock': stock_symbol,
@@ -72,7 +72,7 @@ def retrieve_historical_data(producer, stock_symbol, kafka_topic, logger):
                     if all(value is not None for value in historical_data_point.values()):
                         send_to_kafka(producer, kafka_topic, stock_symbol, symbol_index, historical_data_point)
                         logger.info(f"Stock value retrieved and pushed to Kafka topic {kafka_topic}")
-                        
+
                     logger.info(f"Sent data point for {stock_symbol} at {row['Date']}")
                 except Exception as row_error:
                     logger.error(f"Error processing row for {stock_symbol}: {row_error}")
