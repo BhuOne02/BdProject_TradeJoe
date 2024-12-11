@@ -12,16 +12,12 @@ class InfluxDBWriter:
     def __init__(self, bucket, measurement):
         self.bucket = bucket
         self.measurement = measurement
-        # self.client = influxdb_client.InfluxDBClient(url="http://influxdb:8086", 
-        #             token="smtzr6epf3DfZ3o0cLSbX7P6US6qS-jwHp3BK8xeeh7G7M4N7oQ3hiEmGOqkTtUK1HTLz-lELvhEwbDEXD7qEw==",
-        #             org="primary"
-        #             )
         self.client = influxdb_client.InfluxDBClient(url="http://influxdb:8086", 
                     token=os.environ.get("INFLUX_TOKEN"),
                     org=os.environ.get("INFLUX_ORG")
                     )
-        self.write_api = self.client.write_api(write_options=SYNCHRONOUS)
         self.is_connected()
+        self.write_api = self.client.write_api(write_options=SYNCHRONOUS)
 
     def open(self, partition_id, epoch_id):
         print("Opened %d, %d" % (partition_id, epoch_id))
@@ -29,6 +25,7 @@ class InfluxDBWriter:
 
     # def process(self, row):
     def process(self, timestamp, tags, fields):
+        print("inside process")
         point = Point(self.measurement)
 
         for key, value in tags.items():
@@ -72,10 +69,13 @@ class InfluxDBWriter:
     
     def is_connected(self):
         try:
-            # Attempt a simple query to test the connection
-            query = f'from(bucket: "{os.environ.get("INFLUXDB_BUCKET")}") |> range(start: -1m)'
-            self.client.query_api().query_data_frame(query)
-            return True
+            health = self.client.health()
+            if health.status == "pass":
+                print("InfluxDB health check passed.")
+                return True
+            else:
+                print(f"InfluxDB health check failed: {health.message}")
+                return False
         except Exception as e:
-            print(f"Connection error: {str(e)}")
+            print(f"Exception during InfluxDB health check: {e}")
             return False

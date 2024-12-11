@@ -1,6 +1,726 @@
-2024-12-10 03:38:08 - INFO - Bhuvan
-2024-12-10 03:38:13 - ERROR - An error occurred: "None of [Index([('A', 'M', 'Z', 'N')], dtype='object', name='Datetime')] are in the [index]"
-2024-12-10 03:38:49 - INFO - Bhuvan
-2024-12-10 03:38:54 - ERROR - An error occurred: "None of [Index([('A', 'M', 'Z', 'N')], dtype='object', name='Datetime')] are in the [index]"
-2024-12-10 03:39:14 - INFO - Bhuvan
-2024-12-10 03:39:14 - ERROR - An error occurred: "None of [Index([('A', 'M', 'Z', 'N')], dtype='object', name='Datetime')] are in the [index]"
+2024-12-11 00:56:04 - INFO - Actual Code
+2024-12-11 00:56:04 - INFO - retrieve_real_time_data
+2024-12-11 00:56:04 - INFO - Starting to retrieve historical data
+2024-12-11 00:56:09 - INFO - Data fetched successfully for stock symbol AMZN: Price        Adj Close       Close  ...        Open    Volume
+Ticker            AMZN        AMZN  ...        AMZN      AMZN
+Date                                ...                      
+2024-11-11  206.839996  206.839996  ...  208.500000  35456000
+2024-11-12  208.910004  208.910004  ...  208.369995  38942900
+2024-11-13  214.100006  214.100006  ...  209.399994  46212900
+2024-11-14  211.479996  211.479996  ...  214.160004  42620300
+2024-11-15  202.610001  202.610001  ...  206.759995  86591100
+
+[5 rows x 6 columns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AMZN at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Data fetched successfully for stock symbol AAPL: Price        Adj Close       Close  ...        Open    Volume
+Ticker            AAPL        AAPL  ...        AAPL      AAPL
+Date                                ...                      
+2024-11-11  224.229996  224.229996  ...  225.000000  42005600
+2024-11-12  224.229996  224.229996  ...  224.550003  40398300
+2024-11-13  225.119995  225.119995  ...  224.009995  48566200
+2024-11-14  228.220001  228.220001  ...  225.020004  44923900
+2024-11-15  225.000000  225.000000  ...  226.399994  47923700
+
+[5 rows x 6 columns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 00:56:10 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:10 - INFO - Sent data point for AAPL at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Data fetched successfully for stock symbol MSFT: Price        Adj Close       Close  ...        Open    Volume
+Ticker            MSFT        MSFT  ...        MSFT      MSFT
+Date                                ...                      
+2024-11-11  417.174957  418.010010  ...  422.519989  24503300
+2024-11-12  422.184937  423.029999  ...  418.250000  19401200
+2024-11-13  424.350616  425.200012  ...  421.640015  21502200
+2024-11-14  426.037231  426.890015  ...  425.000000  30246900
+2024-11-15  414.170990  415.000000  ...  419.820007  28247600
+
+[5 rows x 6 columns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for MSFT at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Data fetched successfully for stock symbol GOOGL: Price        Adj Close       Close  ...        Open    Volume
+Ticker           GOOGL       GOOGL  ...       GOOGL     GOOGL
+Date                                ...                      
+2024-11-11  180.143555  180.350006  ...  178.580002  17450400
+2024-11-12  181.412079  181.619995  ...  179.820007  25134900
+2024-11-13  178.675232  178.880005  ...  180.460007  23184000
+2024-11-14  175.378998  175.580002  ...  178.279999  31007500
+2024-11-15  172.292542  172.490005  ...  173.729996  32504600
+
+[5 rows x 6 columns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 00:56:11 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 00:56:11 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
+2024-12-11 01:01:32 - INFO - Actual Code
+2024-12-11 01:01:32 - INFO - retrieve_real_time_data
+2024-12-11 01:01:32 - INFO - Starting to retrieve historical data
+2024-12-11 01:01:38 - INFO - Data fetched successfully for stock symbol AMZN: Price        Adj Close       Close  ...        Open    Volume
+Ticker            AMZN        AMZN  ...        AMZN      AMZN
+Date                                ...                      
+2024-11-11  206.839996  206.839996  ...  208.500000  35456000
+2024-11-12  208.910004  208.910004  ...  208.369995  38942900
+2024-11-13  214.100006  214.100006  ...  209.399994  46212900
+2024-11-14  211.479996  211.479996  ...  214.160004  42620300
+2024-11-15  202.610001  202.610001  ...  206.759995  86591100
+
+[5 rows x 6 columns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AMZN at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Data fetched successfully for stock symbol AAPL: Price        Adj Close       Close  ...        Open    Volume
+Ticker            AAPL        AAPL  ...        AAPL      AAPL
+Date                                ...                      
+2024-11-11  224.229996  224.229996  ...  225.000000  42005600
+2024-11-12  224.229996  224.229996  ...  224.550003  40398300
+2024-11-13  225.119995  225.119995  ...  224.009995  48566200
+2024-11-14  228.220001  228.220001  ...  225.020004  44923900
+2024-11-15  225.000000  225.000000  ...  226.399994  47923700
+
+[5 rows x 6 columns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 01:01:38 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:38 - INFO - Sent data point for AAPL at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Data fetched successfully for stock symbol MSFT: Price        Adj Close       Close  ...        Open    Volume
+Ticker            MSFT        MSFT  ...        MSFT      MSFT
+Date                                ...                      
+2024-11-11  417.174957  418.010010  ...  422.519989  24503300
+2024-11-12  422.184937  423.029999  ...  418.250000  19401200
+2024-11-13  424.350616  425.200012  ...  421.640015  21502200
+2024-11-14  426.037231  426.890015  ...  425.000000  30246900
+2024-11-15  414.170990  415.000000  ...  419.820007  28247600
+
+[5 rows x 6 columns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for MSFT at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Data fetched successfully for stock symbol GOOGL: Price        Adj Close       Close  ...        Open    Volume
+Ticker           GOOGL       GOOGL  ...       GOOGL     GOOGL
+Date                                ...                      
+2024-11-11  180.143555  180.350006  ...  178.580002  17450400
+2024-11-12  181.412079  181.619995  ...  179.820007  25134900
+2024-11-13  178.675232  178.880005  ...  180.460007  23184000
+2024-11-14  175.378998  175.580002  ...  178.279999  31007500
+2024-11-15  172.292542  172.490005  ...  173.729996  32504600
+
+[5 rows x 6 columns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-11
+Name: 0, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-12
+Name: 1, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-13
+Name: 2, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-14
+Name: 3, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-15
+Name: 4, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-18
+Name: 5, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-19
+Name: 6, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-20
+Name: 7, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-21
+Name: 8, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-22
+Name: 9, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-25
+Name: 10, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-26
+Name: 11, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-27
+Name: 12, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-11-29
+Name: 13, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-02
+Name: 14, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-03
+Name: 15, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-04
+Name: 16, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-05
+Name: 17, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-06
+Name: 18, dtype: datetime64[ns]
+2024-12-11 01:01:39 - INFO - Stock value retrieved and pushed to Kafka topic real-time-stock-prices
+2024-12-11 01:01:39 - INFO - Sent data point for GOOGL at Ticker
+   2024-12-09
+Name: 19, dtype: datetime64[ns]
