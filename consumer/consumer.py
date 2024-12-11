@@ -78,60 +78,6 @@ if __name__ == "__main__":
     org=influxdb_org
     ).write_api()
 
-    # Adding Fake Data
-    print("Adding Fake Data")
-    # Example data as DataFrame
-    data = {
-        "Datetime": [
-            "2024-12-10 14:30:00+00:00", "2024-12-10 14:32:00+00:00", 
-            "2024-12-10 14:34:00+00:00", "2024-12-10 14:36:00+00:00", 
-            "2024-12-10 14:38:00+00:00"
-        ],
-        "Open": [226.15, 225.75, 226.81, 226.36, 226.09],
-        "High": [227.00, 226.50, 227.20, 226.80, 226.40],
-        "Low": [225.50, 225.00, 225.80, 226.10, 225.90],
-        "Close": [225.77, 226.81, 226.29, 226.03, 226.16],
-        "Volume": [1445385, 286586, 252299, 259204, 178190],
-    }
-    df = pd.DataFrame(data)
-    df["Datetime"] = pd.to_datetime(df["Datetime"])
-
-    # Write data to InfluxDB
-    for _, row in df.iterrows():
-        try:
-            # Create a point for each row
-            point = (
-                Point(influxdb_measurement)
-                .tag("stock", "AMZN")  # Add any relevant tags
-                .field("open", row["Open"])
-                .field("high", row["High"])
-                .field("low", row["Low"])
-                .field("close", row["Close"])
-                .field("volume", int(row["Volume"]))
-                .time(row["Datetime"].to_pydatetime())  # Ensure datetime is in proper format
-            )
-            # Write the point
-            influxdb_writer.write(bucket=influxdb_bucket, record=point)
-            print(f"Data point written: {point}")
-        except Exception as e:
-            print(f"Failed to write data: {e}")
-    # client = InfluxDBClient(url=influxdb_url, token=influxdb_token, org=influxdb_org)
-    # query_api = client.query_api()
-
-    # # Query the database
-    # query = f"""
-    # from(bucket: "{influxdb_bucket}")
-    # |> range(start: -1h)
-    # |> filter(fn: (r) => r._measurement == "stock-price-v1")
-    # """
-    # tables = query_api.query(query)
-
-    # # Print results
-    # for table in tables:
-    #     for record in table.records:
-    #         print(f"Time: {record.get_time()}, Stock: {record['stock']}, Open: {record['open']}")    
-
-
 
     logger = setup_logger(__name__, 'consumer.log')
     logger.info("Testing consumer")
@@ -222,7 +168,7 @@ if __name__ == "__main__":
                     # Write test data to InfluxDB
                     try:
                         influxdb_writer.write(bucket=influxdb_bucket, record=point)
-                        print("Test data written successfully!")
+                        print("Real time data written successfully!")
                     except Exception as e:
                         print(f"Failed to write test data: {e}")
 
