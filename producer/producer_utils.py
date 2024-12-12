@@ -28,8 +28,10 @@ def retrieve_historical_data(producer, stock_symbol, kafka_topic, logger):
     for symbol_index, stock_symbol in enumerate(stock_symbols):
         try:
             stock_symbol = stock_symbol.strip()
-            start_date = '2024-11-10'
+            start_date = '2023-12-10'
             end_date = '2024-12-10'
+            logger.info(start_date)
+            logger.info(end_date)
 
             historical_data = yf.download(
                 tickers=stock_symbol,
