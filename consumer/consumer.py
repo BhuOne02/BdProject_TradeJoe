@@ -124,7 +124,7 @@ if __name__ == "__main__":
             if messages:
                 rows = [Row(
                         stock=msg["stock"],
-                        date=msg["date"],  # Assuming date is already converted to datetime
+                        date=msg["date"],
                         open=float(msg["open"]) if msg["open"] is not None else None,
                         high=float(msg["high"]) if msg["high"] is not None else None,
                         low=float(msg["low"]) if msg["low"] is not None else None,
@@ -178,58 +178,6 @@ if __name__ == "__main__":
     finally:
         # Close the consumer to release resources
         consumer.close()
-
-    # spark.sparkContext.setLogLevel("ERROR")
-
-    # stockDataframe = spark \
-    #     .readStream \
-    #     .format("kafka") \
-    #     .option("kafka.bootstrap.servers", KAFKA_BOOTSTRAP_SERVERS) \
-    #     .option("subscribe", KAFKA_TOPIC_NAME) \
-    #     .load()
-    
-    # stockDataframe = stockDataframe.select(col("value").cast("string").alias("data"))
-
-    # inputStream =  stockDataframe.selectExpr("CAST(data as STRING)")
-
-
-
-    # # Parse JSON data and select columns
-    # stockDataframe = inputStream.select(from_json(col("data"), stock_price_schema).alias("stock_price"))
-    # expandedDf = stockDataframe.select("stock_price.*")
-    # influxdb_writer = InfluxDBWriter('stock-prices-bucket', 'stock-price-v1')    
-    # # influxdb_writer = InfluxDBWriter(os.environ.get("INFLUXDB_BUCKET"), os.environ.get("INFLUXDB_MEASUREMENT"))
-
-
-    # def process_batch(batch_df, batch_id):
-    #     print(f"Processing batch {batch_id}")
-    #     realtimeStockPrices = batch_df.select("stock_price.*")
-        
-    #     for realtimeStockPrice in realtimeStockPrices.collect():
-    #         print("timestamp",timestamp)
-    #         tags = {"stock": realtimeStockPrice["stock"]}
-    #         fields = {
-    #             "open": realtimeStockPrice['open'],
-    #             "high": realtimeStockPrice['high'],
-    #             "low": realtimeStockPrice['low'],
-    #             "close": realtimeStockPrice['close'],
-    #             "volume": realtimeStockPrice['volume']
-    #         }
-    #         # Log the data being added to InfluxDB
-    #         print(f"Adding to InfluxDB - Timestamp: {timestamp}, Tags: {tags}, Fields: {fields}")
-
-    #         # Write to InfluxDB
-    #         influxdb_writer.process(timestamp, tags, fields)
-
-
-    # query = stockDataframe \
-    #     .writeStream \
-    #     .foreachBatch(process_batch) \
-    #     .outputMode("append") \
-    #     .start()
-
-    # query.awaitTermination()
-
 
 
 

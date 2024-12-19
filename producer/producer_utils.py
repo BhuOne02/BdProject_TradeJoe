@@ -29,7 +29,7 @@ def retrieve_historical_data(producer, stock_symbol, kafka_topic, logger):
         try:
             stock_symbol = stock_symbol.strip()
             start_date = '2023-12-10'
-            end_date = '2024-12-10'
+            end_date = '2024-12-11'
             logger.info(start_date)
             logger.info(end_date)
 
@@ -87,7 +87,6 @@ def retrieve_real_time_data(producer, stock_symbol, kafka_topic, logger):
 
     # Define the stock symbol for real-time data
     retrieve_historical_data(producer, stock_symbol, kafka_topic, logger)
-
     stock_symbols = stock_symbol.split(",") if stock_symbol else []
     if not stock_symbols:
         logger.error(f"No stock symbols provided in the environment variable.")
@@ -112,7 +111,7 @@ def retrieve_real_time_data(producer, stock_symbol, kafka_topic, logger):
                         'high': float(latest_data_point['High']),
                         'low': float(latest_data_point['Low']),
                         'close': float(latest_data_point['Close']),
-                        'volume': int(latest_data_point['Volume'])
+                        'volume': float(latest_data_point['Volume'])
                     }
                     json.dumps(real_time_data_point) 
                     send_to_kafka(producer, kafka_topic, stock_symbol, symbol_index, real_time_data_point)
