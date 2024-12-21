@@ -1,0 +1,1033 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 1,
+    "iteration": 1734150867507,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 30,
+        "options": {
+          "displayMode": "basic",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": true
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Volume\" and contains(value: r.ticker, set: ${tickers:json}))\n  |> group(columns: [\"ticker\"])\n  |> sum(column: \"_value\")  // Sum of volume for each stock\n  |> group()\n  |> sort(columns: [\"_value\"], desc: true)\n  |> limit(n: 5)  // Top 5 most active stocks",
+            "refId": "A"
+          }
+        ],
+        "title": "Most Active Stocks among $tickers (by Volume) ",
+        "transparent": true,
+        "type": "bargauge"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 10,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "\nfrom(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop) // Replace with your desired time range\n  |> filter(fn: (r) => \n      r._measurement == \"stock_prices\" and \n      r._field == \"Close\" and \n      contains(value: r.ticker, set: ${tickers:json})\n  )\n  |> map(fn: (r) => ({\n      r with \n      price: float(v: r._value) // Duplicate the original price into a new column\n  }))\n  |> group(columns: [\"ticker\"]) // Group by ticker to calculate moving average per ticker\n  |> movingAverage(n: 5) // Replace 5 with your desired window size\n  |> map(fn: (r) => ({\n      ticker: r.ticker,\n      _time: r._time,\n      price: r.price, \n      moving_average: r._value \n  }))\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Price and Moving Average of $tickers",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "id": 28,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "// Fetch data for stock AAPL\naapl = from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and r.ticker == \"AAPL\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> rename(columns: {_value: \"AAPL\"})\n\naapl_m = \n  aapl\n  |> mean(column: \"AAPL\")\n\naapl_std = \n  aapl\n  |> stddev(column: \"AAPL\")\n  \n\naapl_stddev = aapl_std |> findRecord(fn: (key) => true, idx: 0)\naapl_mean = aapl_m |> findRecord(fn: (key) => true, idx: 0)\n\nmsft = from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and r.ticker == \"MSFT\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> rename(columns: {_value: \"MSFT\"})  \n\n\n\nmsft_m = \n  msft\n  |> mean(column: \"MSFT\")\n\nmsft_std = \n  msft\n  |> stddev(column: \"MSFT\")\n  \n\nmsft_stddev = msft_std |> findRecord(fn: (key) => true, idx: 0)\nmsft_mean = msft_m |> findRecord(fn: (key) => true, idx: 0)\n\njoined = join(tables: {a: aapl, b: msft}, on: [\"_time\"])\n\ncorrelation = \n  joined\n  |> map(fn: (r) => ({\n      r with\n      covar: (r.AAPL - aapl_mean.AAPL) * (r.MSFT - msft_mean.MSFT)\n  }))\n\n  |> mean(column: \"covar\")\n  |> map(fn: (r) => ({\n      r with\n      correlation: r.covar / (aapl_stddev.AAPL * msft_stddev.MSFT)\n  }))\n  |> keep(columns: [\"correlation\"])\n\n\nyield correlation",
+            "refId": "A"
+          }
+        ],
+        "title": "Correlation b/w MSFT and AAPL",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        },
+        "id": 6,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and contains(value: r.ticker, set: ${tickers:json}))\n  |> filter(fn: (r) => r._field == \"Close\")\n  \n",
+            "refId": "A"
+          }
+        ],
+        "title": "Close price of ${tickers}",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "description": "Identifies companies with the most consecutive days of price drops",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": []
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        },
+        "id": 26,
+        "options": {
+          "displayLabels": [
+            "percent"
+          ],
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "pieType": "donut",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)  // Last 7 days\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and contains(value: r.ticker, set: ${tickers:json}))\n  |> group(columns: [\"ticker\"])\n  |> sort(columns: [\"_time\"])\n  |> difference(columns: [\"_value\"], nonNegative: false)  // Calculate price differences\n  |> map(fn: (r) => ({\n      r with is_downturn: if r._value < 0 then 1 else 0  // Mark downturns as 1\n  }))\n  |> cumulativeSum(columns: [\"is_downturn\"])  // Cumulative count of downturns\n  |> group(columns: [\"ticker\"], mode: \"by\")\n  |> max(column: \"is_downturn\")  // Maximum cumulative downturn count per stock\n  |> keep(columns: [\"ticker\", \"is_downturn\"])\n  |> sort(columns: [\"is_downturn\"], desc: true)",
+            "refId": "A"
+          }
+        ],
+        "title": "Continuous Downturn ",
+        "transparent": true,
+        "type": "piechart"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        },
+        "id": 24,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)  \n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and contains(value: r.ticker, set: ${tickers:json}))\n  |> group(columns: [\"ticker\"])  // Group by stock to separate lines\n  |> sort(columns: [\"_time\"])  // Ensure data is ordered by time\n  |> keep(columns: [\"_time\", \"ticker\", \"_value\"])  // Only keep relevant columns",
+            "refId": "A"
+          }
+        ],
+        "title": "Stock Price Trends",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "description": "Difference in values for close prices",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        },
+        "id": 22,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and contains(value: r.ticker, set: ${tickers:json}))\n  |> group(columns: [\"ticker\"])\n  |> sort(columns: [\"_time\"])\n  |> difference(columns: [\"_value\"], nonNegative: false)\n  |> map(fn: (r) => ({\n      r with \n      Close_price: float(v: r._value)  // Create a new column from _value (close price)\n  }))\n  |> keep(columns: [\"Close_price\", \"_time\", \"ticker\"])",
+            "refId": "A"
+          }
+        ],
+        "title": "Percentage Change for $tickers",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "description": "This query calculates avg stock price for each company and identifies by leader. ",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMin": 0,
+              "fillOpacity": 80,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineWidth": 1,
+              "scaleDistribution": {
+                "type": "linear"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        },
+        "id": 20,
+        "options": {
+          "barRadius": 0,
+          "barWidth": 0.97,
+          "groupWidth": 0.7,
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "orientation": "auto",
+          "showValue": "auto",
+          "stacking": "none",
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          },
+          "xTickLabelRotation": 0,
+          "xTickLabelSpacing": 0
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "\n\nfrom(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)  \n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and r.ticker != \"BRK-A\" and r.ticker != \"BKNG\")\n  |> group(columns: [\"ticker\"])\n  |> mean(column: \"_value\")\n  |> group()\n  |> sort(columns: [\"_value\"], desc: true)  // Sort by average price\n  |> keep(columns: [\"ticker\", \"_value\"])\n  |> limit(n: 5)",
+            "refId": "A"
+          }
+        ],
+        "title": "Leader Companies",
+        "transparent": true,
+        "type": "barchart"
+      },
+      {
+        "description": "This query calculates the monthly averages of stock prices for each company",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 32
+        },
+        "id": 18,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)  // Last 1 year\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and contains(value: r.ticker, set: ${tickers:json}))\n  |> group(columns: [\"ticker\"])\n  |> aggregateWindow(every: 1mo, fn: mean, createEmpty: false)  // Monthly averages\n  |> keep(columns: [\"_time\", \"ticker\", \"_value\"])",
+            "refId": "A"
+          }
+        ],
+        "title": "Seasonality",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 32
+        },
+        "id": 14,
+        "options": {
+          "feedUrl": "http://localhost:6789/rss-news-feed",
+          "showImage": true
+        },
+        "title": "Latest News",
+        "transparent": true,
+        "type": "news"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                },
+                {
+                  "color": "dark-green",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 40
+        },
+        "id": 8,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "vertical",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": true
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "\nfrom(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and contains(value: r.ticker, set: ${tickers:json}))\n  |> filter(fn: (r) => r._field == \"Close\")\n  |> group(columns: [\"ticker\"])\n  |> window(period: 1d)\n  |> last()\n  |> group(columns: [\"ticker\"])\n  |> duplicate(column: \"_value\", as: \"latest_price\")\n  |> difference(nonNegative: false, columns: [\"_value\"])\n  |> rename(columns: { \"_value\" : \"price_difference\"})\n  |> drop(columns: [\"_start\", \"_stop\"])\n  |> last(column: \"price_difference\")\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Latest Price of $tickers",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-red",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": -1
+                },
+                {
+                  "color": "dark-green",
+                  "value": 0.2
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 12,
+          "x": 12,
+          "y": 40
+        },
+        "id": 4,
+        "options": {
+          "colorByField": "price_change",
+          "sizeField": "mean_volume",
+          "tiling": "treemapSquarify"
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "hide": false,
+            "query": "\npriceChange = from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\")\n  |> filter(fn: (r) => r._field == \"Open\" or r._field == \"Close\")\n  |> group(columns: [\"ticker\"])\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n      ticker: r.ticker,\n      price_change: ((r.Close - r.Open) / r.Open) * 100.0,\n      ticker_data: r.ticker\n  }))\n  |> mean(column: \"price_change\")\n  \n\n// Calculate mean Volume\nmeanVolume = from(bucket: \"stock_data_bucket\")\n  |> range(start: -1y)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Volume\")\n  |> group(columns: [\"ticker\"])\n  |> mean(column: \"_value\")\n  |> rename(columns: {_value: \"mean_volume\"}) \n  |> map(fn: (r) => ({\n      ticker: r.ticker,\n      mean_volume: r.mean_volume,\n      ticker_data: r.ticker\n  }))\n\njoin(\n  tables: {priceChange: priceChange, meanVolume: meanVolume},\n  on: [\"ticker\"]\n)\n\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Volume vs Price action over Last Week",
+        "transformations": [],
+        "transparent": true,
+        "type": "marcusolsson-treemap-panel"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                },
+                {
+                  "color": "dark-yellow",
+                  "value": 25
+                },
+                {
+                  "color": "semi-dark-orange",
+                  "value": 50
+                },
+                {
+                  "color": "dark-green",
+                  "value": 75
+                },
+                {
+                  "color": "dark-purple",
+                  "value": 100
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 48
+        },
+        "id": 12,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": false,
+          "text": {}
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "import \"experimental\"\n\n// Define the lookback period and moving average windows\nlookback = -125d\npriceMaWindow = 5\nmomentumMaWindow = 14\n\nprocessed = \n  from(bucket: \"stock_data_bucket\")\n    |> range(\n        start: experimental.subDuration(d: lookback, from: v.timeRangeStart), \n        stop: v.timeRangeStop\n    )\n    |> filter(fn: (r) => r._measurement == \"stock_prices\" and (r._field == \"Close\" or r._field == \"Volume\"))\n    |> map(fn: (r) => ({\n        r with \n        _value: float(v: r._value) // Explicitly cast numeric fields to float\n    }))\n    |> group(columns: [\"ticker\"]) // Group by ticker to avoid schema collisions\n    |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") // Pivot to have Close and Volume as columns\n    |> map(fn: (r) => ({\n        r with \n        Close_price: float(v: r.Close) // Duplicate the original price into a new column\n    }))\n    |> rename(columns: {\"Close\": \"_value\"})\n    |> movingAverage(n: priceMaWindow)\n    |> rename(columns: {_value: \"Close_MA\"}) // Rename moving average to Close_MA\n    \n    |> map(fn: (r) => ({\n        r with \n        price_momentum: if r.Close_MA == 0.0 then 0.0 else (r.Close_price - r.Close_MA) / r.Close_MA * 100.0 // Calculate price momentum as % difference\n    }))\n\n    // Calculate the percentage change in volume (volume strength)\n    |> map(fn: (r) => ({\n        r with \n        Volume_copy: float(v: r.Volume) // Duplicate the original price into a new column\n    }))\n    \n    |> difference(columns: [\"Volume\"])\n    |> map(fn: (r) => ({\n        r with \n        volume_strength: if r.Volume_copy == 0.0 then 0.0 else (- r.Volume / r.Volume_copy) * 100.0 // Volume strength as % change\n    }))\n\nsmoothed = \n  processed\n  |> keep(columns: [\"_time\", \"volume_strength\", \"ticker\"])\n  |> map(fn: (r) => ({\n      r with \n      volume_strength_copy: float(v: r.volume_strength) // Duplicate the original price into a new column\n  }))\n  |> rename(columns: {\"volume_strength_copy\": \"_value\"})\n  |> drop(columns: [\"volume_strength\"])\n  |> movingAverage(n: momentumMaWindow)\n  |> rename(columns: {\"_value\": \"volume_strength_smoothed\"}) // Rename smoothed value for volume strength\n  \n  \njoined = \n  join(\n    tables: {processed: processed, smoothed: smoothed},\n    on: [\"_time\", \"ticker\"]\n  )\n\nstats = \n  joined\n  |> group()\n  |> range(start: v.timeRangeStart)\n  |> reduce(\n      identity: {min_pm: 1000.0, max_pm: -1000.0, min_vs: 1000.0, max_vs: -1000.0},\n      fn: (r, accumulator) => ({\n          min_pm: if r.price_momentum < accumulator.min_pm then r.price_momentum else accumulator.min_pm,\n          max_pm: if r.price_momentum > accumulator.max_pm then r.price_momentum else accumulator.max_pm,\n          min_vs: if r.volume_strength_smoothed < accumulator.min_vs then r.volume_strength_smoothed else accumulator.min_vs,\n          max_vs: if r.volume_strength_smoothed > accumulator.max_vs then r.volume_strength_smoothed else accumulator.max_vs\n      })\n  )\n\nmin_max = stats |> findRecord(fn: (key) => true, idx: 0)\n\nnormalized = \n  joined\n    |> map(fn: (r) => ({\n      r with \n      normalized_vs: (r.volume_strength_smoothed - min_max.min_vs) / (min_max.max_vs - min_max.min_vs),\n      normalized_pm: (r.price_momentum - min_max.min_pm) / (min_max.max_pm - min_max.min_pm)\n    }))\n\nfear_and_greed_index = \n  normalized\n  |> map(fn: (r) => ({\n      r with \n      fear_greed_index: 50.0 + ((r.normalized_pm + r.normalized_vs) / 2.0) * 50.0\n    }))\n  |> group()\n  |> mean(column: \"fear_greed_index\")\n\nyield fear_and_greed_index\n\n\n\n\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Fear v Greed Index",
+        "transparent": true,
+        "type": "gauge"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 56
+        },
+        "id": 16,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "nlRuGC4Hk"
+            },
+            "query": "\nfrom(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\" and r._field == \"Close\" and contains(value: r.ticker , set: ${tickers:json}))\n  |> group(columns: [\"ticker\"])\n  |> sort(columns: [\"_time\"])\n  |> difference(columns: [\"_value\"], nonNegative: false)",
+            "refId": "A"
+          }
+        ],
+        "title": "Panel Title",
+        "type": "timeseries"
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 35,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              "AAPL",
+              "AMZN",
+              "GOOG",
+              "MSFT"
+            ],
+            "value": [
+              "AAPL",
+              "AMZN",
+              "GOOG",
+              "MSFT"
+            ]
+          },
+          "definition": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\")\n  |> keep(columns: [\"ticker\"])\n  |> distinct(column: \"ticker\")\n  |> map(fn: (r) => ({r with _value: r.ticker}))\n  |> keep(columns: [\"_value\"])\n  |> sort(columns: [\"_value\"])\n",
+          "hide": 0,
+          "includeAll": false,
+          "multi": true,
+          "name": "tickers",
+          "options": [],
+          "query": "from(bucket: \"stock_data_bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"stock_prices\")\n  |> keep(columns: [\"ticker\"])\n  |> distinct(column: \"ticker\")\n  |> map(fn: (r) => ({r with _value: r.ticker}))\n  |> keep(columns: [\"_value\"])\n  |> sort(columns: [\"_value\"])\n",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now/fy",
+      "to": "now/fy"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "project",
+    "uid": "73bOH3VHz",
+    "version": 13,
+    "weekStart": ""
+  }
